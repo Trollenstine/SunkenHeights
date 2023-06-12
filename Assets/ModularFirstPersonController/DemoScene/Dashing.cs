@@ -2,17 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class Dashing : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("References")]
+    public Transform orientation;
+    public Transform PlayerCamera;
+    private Rigidbody rb;
+    private PlayerMovementDashing pm;
+
+    [Header("Dashing")]
+    public float dashForce;
+    public float dashUpwardForce;
+    public float dashDuration;
+
+    [Header("Cooldown")]
+    public float dashCd;
+    private float dashCdTimer;
+
+    [Header("Input")]
+    public KeyCode dashKey = KeyCode.E;
+
+    prive void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        pm = GetComponent<PlayerMovementDashing>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown(dashKey))
+            Dash();
     }
+
+    private void Dash()
+    {
+        Vector3 forceToApply = orientation.forward * dashForce + orientation.up * dashUpwardForce;
+        rb.AddForce(forceToApply, ForceMode.Impulse);
+
+        Invoke(nameof(ResetDash), dashDuration);
+    }
+
+
 }

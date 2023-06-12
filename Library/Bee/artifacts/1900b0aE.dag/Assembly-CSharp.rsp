@@ -347,6 +347,8 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/ModularFirstPersonController/DemoScene/Dashing.cs"
 "Assets/ModularFirstPersonController/FirstPersonController/FirstPersonController.cs"
+"Assets/MoveCamera.cs"
+"Assets/PlayerCam.cs"
 -langversion:9.0
 
 /deterministic
